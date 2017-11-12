@@ -12,27 +12,32 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
-        if root is None:
-            return root
+        if root is None or root is []:
+            return []
         
-        queue = [] 
-        Result = []
+        
+        queue = []
+        result = []
         queue.append(root)
-        Result.append([root.val])
-        while(len(queue) > 0):
-            node = queue.pop(0)
+        result.append([root.val])
+        
+        while len(queue) > 0:
+            
+            length = len(queue)
+            a1 = 0
             Temp = []
-            if node.left:
-                queue.append(node.left)
-                Temp.append(node.left.val)
-                
-            if node.right:
-                queue.append(node.right)
-                Temp.append(node.right.val)
+            while a1 < length:
+                node = queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                    Temp.append(node.left.val)
+                if node.right:
+                    queue.append(node.right)
+                    Temp.append(node.right.val)
+                    
+                a1 += 1
                 
             if Temp != []:
-                Result.append(Temp)
-                
-                
-        return Result
+                result.append(Temp)
             
+        return result
